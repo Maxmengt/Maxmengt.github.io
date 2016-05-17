@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="图论,最短路,枚举," />
+  <meta name="keywords" content="图论,最短路,差分约束系统,SPFA," />
 
 
 
@@ -63,16 +63,16 @@
 
 
 
-<meta name="description" content="题目大意给定一个 $N$ 个点，$M$ 条边的有向图。现将选择 $4$ 个不同的点进行顺序访问（从第 $1$ 个点出发，在第 $4$ 个点结束），并满足点与点之间的最短路距离之和最大。输出符合条件的任意 $4$ 个点。注意可多次经过同一个点。$(4 \le n \le 3000, 3 \le m \le 5000)$">
+<meta name="description" content="鉴于今天做到了差分约束的题目，那么也顺便简单总结一下差分约束的基本求解思路，以及 $SPFA$ 算法的两个优化与如何通过 $SPFA$ 求最长路。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 349 B World Tour（最短路 + 枚举）">
-<meta property="og:url" content="http://zhengboyang.com/2016/05/04/Codeforces-Round-349-(Div-1)-B/index.html">
+<meta property="og:title" content="浅谈差分约束系统与SPFA算法">
+<meta property="og:url" content="http://zhengboyang.com/2016/05/17/浅谈差分约束系统与SPFA算法/index.html">
 <meta property="og:site_name" content="Maxmengt's Blog">
-<meta property="og:description" content="题目大意给定一个 $N$ 个点，$M$ 条边的有向图。现将选择 $4$ 个不同的点进行顺序访问（从第 $1$ 个点出发，在第 $4$ 个点结束），并满足点与点之间的最短路距离之和最大。输出符合条件的任意 $4$ 个点。注意可多次经过同一个点。$(4 \le n \le 3000, 3 \le m \le 5000)$">
-<meta property="og:updated_time" content="2016-05-07T05:42:50.717Z">
+<meta property="og:description" content="鉴于今天做到了差分约束的题目，那么也顺便简单总结一下差分约束的基本求解思路，以及 $SPFA$ 算法的两个优化与如何通过 $SPFA$ 求最长路。">
+<meta property="og:updated_time" content="2016-05-17T12:05:05.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codeforces Round 349 B World Tour（最短路 + 枚举）">
-<meta name="twitter:description" content="题目大意给定一个 $N$ 个点，$M$ 条边的有向图。现将选择 $4$ 个不同的点进行顺序访问（从第 $1$ 个点出发，在第 $4$ 个点结束），并满足点与点之间的最短路距离之和最大。输出符合条件的任意 $4$ 个点。注意可多次经过同一个点。$(4 \le n \le 3000, 3 \le m \le 5000)$">
+<meta name="twitter:title" content="浅谈差分约束系统与SPFA算法">
+<meta name="twitter:description" content="鉴于今天做到了差分约束的题目，那么也顺便简单总结一下差分约束的基本求解思路，以及 $SPFA$ 算法的两个优化与如何通过 $SPFA$ 求最长路。">
 
 
 
@@ -90,7 +90,7 @@
   };
 </script>
 
-  <title> Codeforces Round 349 B World Tour（最短路 + 枚举） | Maxmengt's Blog </title>
+  <title> 浅谈差分约束系统与SPFA算法 | Maxmengt's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans,en,default">
@@ -277,7 +277,7 @@
             
             
               
-                Codeforces Round 349 B World Tour（最短路 + 枚举）
+                浅谈差分约束系统与SPFA算法
               
             
           </h1>
@@ -289,8 +289,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-04T13:29:35+08:00" content="2016-05-04">
-              2016-05-04
+            <time itemprop="dateCreated" datetime="2016-05-17T20:01:11+08:00" content="2016-05-17">
+              2016-05-17
             </time>
           </span>
 
@@ -303,8 +303,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
+                  <a href="/categories/ACM/" itemprop="url" rel="index">
+                    <span itemprop="name">ACM</span>
                   </a>
                 </span>
 
@@ -319,8 +319,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/04/Codeforces-Round-349-(Div-1)-B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/04/Codeforces-Round-349-(Div-1)-B/" itemprop="commentsCount"></span>
+                <a href="/2016/05/17/浅谈差分约束系统与SPFA算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/浅谈差分约束系统与SPFA算法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,16 +342,31 @@
       
 
       
-        <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a><a href="http://codeforces.com/contest/666/problem/B" target="_blank" rel="external">题目</a>大意</h3><p>给定一个 $N$ 个点，$M$ 条边的有向图。现将选择 $4$ 个不同的点进行<strong>顺序访问</strong>（从第 $1$ 个点出发，在第 $4$ 个点结束），并满足点与点之间的最短路距离之和最大。输出符合条件的任意 $4$ 个点。注意可多次经过同一个点。<br>$(4 \le n \le 3000, 3 \le m \le 5000)$<br><a id="more"></a></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><strong>最短路+枚举</strong>。</p>
-<p>先跑最短路，计算 $f(u,v)$ 表示 $u$ 到 $v$ 的最短路。</p>
-<p>对于所求问题 $a \to b \to c \to d$，枚举 $b$ 和 $c$，之后枚举 $f(a,b)$ 中最大的 $3$ 个 $a$，和 $f(c,d)$ 中最大的 $3$ 个 $d$（跑最短路时可以预处理出 $3$ 个最大的点），check一下就可以了。</p>
-<p>为什么只需要枚举最大的 $3$ 个点就可以呢？考虑对 $f(a,b)$ 中 $a$ 的枚举，由于 $a \notin {b, c, d}$，所以 $a$ 的不合法取值只有 $3$ 个，且预处理时可以保证 $a \ne b$，所以 $a$ 可能的取值只有 $f(x,b)$ 中最大的 $3$ 个 $x$。枚举 $d$ 同理。</p>
-<p>官方题解：</p>
-<blockquote>
-<p>You are given the oriented graph, find four distinct vertices a, b, c, d such that each vertex if reachable from previous and the sum of shortest paths between consequitive vertices is as large as possible. First let’s run a BFS from each vertex and find three most distant vertices over given graph and its reverse. Afterwards loop through each possible b and c. Having them fixed, loop through a among three most distant vertices from b in the reversed graph and through d among three most distant vertices from c in tie initial graph. This is sufficient, because if we’ve fixed b and c and d is not one of three furthest from c then we could replace it with one of them and improve the answer.</p>
-</blockquote>
-<h3 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">3e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">5e3</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> dist[MAXN][MAXN];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; G[MAXN];</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; maze[MAXN], rmaze[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist[s], <span class="number">-1</span>, <span class="keyword">sizeof</span>(dist[s]));</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line">    que.push(s);</span><br><span class="line">    dist[s][s] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>( !que.empty() ) &#123;</span><br><span class="line">        <span class="keyword">int</span> u = que.front(); que.pop();</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[u].size(); ++ i ) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = G[u][i];</span><br><span class="line">            <span class="keyword">if</span>( dist[s][v] == <span class="number">-1</span> ) &#123;</span><br><span class="line">                dist[s][v] = dist[s][u] + <span class="number">1</span>;</span><br><span class="line">                que.push(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>( ~<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m) ) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++ i ) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;u, &amp;v);</span><br><span class="line">            G[u].push_back(v);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i ) bfs(i);</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i ) &#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++ j ) &#123;</span><br><span class="line">                <span class="keyword">if</span>( i == j || dist[i][j] == <span class="number">-1</span> ) <span class="keyword">continue</span>;</span><br><span class="line">                maze[i].push_back(P(dist[i][j], j));</span><br><span class="line">                rmaze[j].push_back(P(dist[i][j], i));</span><br><span class="line">            &#125;</span><br><span class="line">            sort(maze[i].begin(), maze[i].end(), greater&lt;P&gt;());</span><br><span class="line">            <span class="keyword">if</span>( maze[i].size() &gt; <span class="number">3</span> ) maze[i].resize(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i ) &#123;</span><br><span class="line">            sort(rmaze[i].begin(), rmaze[i].end(), greater&lt;P&gt;());</span><br><span class="line">            <span class="keyword">if</span>( rmaze[i].size() &gt; <span class="number">3</span> ) rmaze[i].resize(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> A, B, C, D, Max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> b = <span class="number">1</span>; b &lt;= n; ++ b ) &#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> c = <span class="number">1</span>; c &lt;= n; ++ c ) &#123;</span><br><span class="line">                <span class="keyword">if</span>( b == c || dist[b][c] == <span class="number">-1</span> ) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rmaze[b].size(); ++ i ) &#123;</span><br><span class="line">                    <span class="keyword">int</span> a = rmaze[b][i].second;</span><br><span class="line">                    <span class="keyword">if</span>( a == c ) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">for</span>( <span class="keyword">int</span> j = <span class="number">0</span>; j &lt; maze[c].size(); ++ j ) &#123;</span><br><span class="line">                        <span class="keyword">int</span> sum = dist[a][b] + dist[b][c];</span><br><span class="line">                        <span class="keyword">int</span> d = maze[c][j].second;</span><br><span class="line">                        <span class="keyword">if</span>( a == d || b == d ) <span class="keyword">continue</span>;</span><br><span class="line">                        sum += dist[c][d];</span><br><span class="line">                        <span class="keyword">if</span>( sum &gt; Max ) &#123;</span><br><span class="line">                            Max = sum;</span><br><span class="line">                            A = a, B = b, C = c, D = d;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d %d %d\n"</span>, A, B, C, D);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>鉴于今天做到了差分约束的题目，那么也顺便简单总结一下差分约束的基本求解思路，以及 $SPFA$ 算法的两个优化与如何通过 $SPFA$ 求最长路。</p>
+<a id="more"></a>
+<h3 id="差分约束系统"><a href="#差分约束系统" class="headerlink" title="差分约束系统"></a>差分约束系统</h3><p>一般来说，对于一类“<strong>两个未知数的差小于等于（或大于等于）某个常数</strong>” $(x_i - x_j \le c)$ 不等式组的求解，便是差分约束系统。差分约束系统的美妙之处在于可以将其转为图论，通过求解单源最短路来判断原不等式组是否有解甚至求得最大或最小解。</p>
+<p>首先，显然对于此类不等式组，要么无解，要么有无数解。因为假设存在一组解为 ${x_1, x_2, …, x_n}$，那么对于任意一个常数 $k$，${x_1 + k, x_2 + k, …, x_n + k}$ 也必是一组解，因为他们的差值是不变的，所以不等式组依然成立。</p>
+<p>接下来考虑单源最短路图，对于某点 $v$ 与其邻接点 $u$，显然 $dist[v] \le dist[u] + cost_{u-&gt;v}$，也即 $dist[v] - dist[u] \le cost_{u-&gt;v}$，正好满足“两个未知数的差小于等于某个常数”。因此，我们将待求解不等式组中的未知数看成图上的顶点，对于每个不等式 $x_i - x_j \le c$，转化成图中顶点 $i$ 向 $j$ 建边，边权为 $c$。</p>
+<p>然后直接在建成的图上跑单源最短路就可以了。如果存在负环则无解，否则 ${dist[i]}$ 便是其中一组解，至于以哪个点作为源点都是可以的。相当于以哪个点作为源点就是将该点赋值为 $0$，通过该约束去得出不等式组中其他未知数的解。</p>
+<p>还有一种是不仅需要判断是否有解，还要求求出一组最大/最小解，这种类型可以考虑通过增加一个点去对其他点进行约束，然后以这个点为源点跑最长/最短路求解，由于差分约束类型题目近几年几乎不可见了，所以基本没遇过这种类型，只能瞎BB下。</p>
+<h3 id="SPFA-算法"><a href="#SPFA-算法" class="headerlink" title="SPFA 算法"></a>SPFA 算法</h3><p>由于图中可能存在负环，所以不能使用 $dijkstra$ 算法求解，可以考虑使用 $SPFA$ 或者 $Bellman-Ford$，个人建议用 $SPFA$ ，比较快。<br><br></p>
+<h4 id="最长路与最短路"><a href="#最长路与最短路" class="headerlink" title="最长路与最短路"></a>最长路与最短路</h4><p>$SPFA$ 求最长路的算法跟求最短路类似：</p>
+<ul>
+<li>最长路是初始化为 $0$，当存在 $dist[v] &lt; dist[u] + cost_{u-&gt;v}$ 时进行更新。</li>
+<li>最短路时初始化为 $INF$，当存在 $dist[v] &gt; dist[u] + cost_{u-&gt;v}$ 时进行更新。</li>
+</ul>
+<h4 id="SPFA的优化"><a href="#SPFA的优化" class="headerlink" title="SPFA的优化"></a>SPFA的优化</h4><p>另外，有时连 $SPFA$ 算法的玄学时间复杂度都不能承受，可以考虑使用 $SPFA$ 的两个优化：$SLF$ 和 $LLL$。</p>
+<ul>
+<li>$SLF$: $Small$ $Label$ $First$</li>
+</ul>
+<p>使用双端队列$deque$，把将要插入的节点 $v$ 与此时队列中的队首 $u$ 的 $dist$ 进行比较，若小于则插入队首，否则插入队尾。即优先将 $dist$ 较小的节点拿出来松弛操作。</p>
+<ul>
+<li>$LLL$: $Large$ $Label$ $Last$</li>
+</ul>
+<p>讲道理这种优化我也没用到过(。・・)ノ。不过还是简单讲下，这种方法需要维护队列中 $dist$ 的平均值，然后每次出队时（设为 $i$），将 $dist[i]$ 与 $dist_{avg}$ 进行比较，若大于则将 $i$ 节点重新插入队尾，然后继续出队，一直找到一个节点使得 $dist[i] \le dist_{avg}$，将其取出进行松弛操作。</p>
+<p>等有空再来补几发代码。</p>
+<p>完。</p>
+
       
     </div>
 
@@ -369,7 +384,9 @@
           
             <a href="/tags/最短路/" rel="tag">#最短路</a>
           
-            <a href="/tags/枚举/" rel="tag">#枚举</a>
+            <a href="/tags/差分约束系统/" rel="tag">#差分约束系统</a>
+          
+            <a href="/tags/SPFA/" rel="tag">#SPFA</a>
           
         </div>
       
@@ -378,17 +395,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/14/uestc-1220/" rel="next" title="UESTC 1220 The Battle of Guandu（最短路）">
-                <i class="fa fa-chevron-left"></i> UESTC 1220 The Battle of Guandu（最短路）
+              <a href="/2016/05/17/hdu-4276/" rel="next" title="HDU 4276 The Ghost Blows Light（树型DP）">
+                <i class="fa fa-chevron-left"></i> HDU 4276 The Ghost Blows Light（树型DP）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/07/Codeforces-Gym-Hello-2015-(Div-2)-B/" rel="prev" title="Codeforces Gym Hello 2015 B Troynacci Query（partial sum）">
-                Codeforces Gym Hello 2015 B Troynacci Query（partial sum） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +574,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题代码"><span class="nav-number">3.</span> <span class="nav-text">解题代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#差分约束系统"><span class="nav-number">1.</span> <span class="nav-text">差分约束系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA-算法"><span class="nav-number">2.</span> <span class="nav-text">SPFA 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最长路与最短路"><span class="nav-number">2.1.</span> <span class="nav-text">最长路与最短路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPFA的优化"><span class="nav-number">2.2.</span> <span class="nav-text">SPFA的优化</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -829,9 +842,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'zhengboyangcom';
-      var disqus_identifier = '2016/05/04/Codeforces-Round-349-(Div-1)-B/';
-      var disqus_title = 'Codeforces Round 349 B World Tour（最短路 + 枚举）';
-      var disqus_url = 'http://zhengboyang.com/2016/05/04/Codeforces-Round-349-(Div-1)-B/';
+      var disqus_identifier = '2016/05/17/浅谈差分约束系统与SPFA算法/';
+      var disqus_title = '浅谈差分约束系统与SPFA算法';
+      var disqus_url = 'http://zhengboyang.com/2016/05/17/浅谈差分约束系统与SPFA算法/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
