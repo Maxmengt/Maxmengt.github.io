@@ -1,0 +1,926 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="8ZCmeLcN_tC3wA7DqyaP4M-46iGo2wwkX16icUh5e9c" />
+
+
+
+
+  <meta name="baidu-site-verification" content="o6McFxBZN2" />
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,Head First Python,Web,CGI,MVC," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Maxmengt's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/M_.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
+记笔记记笔记ing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Head First Python Web开发">
+<meta property="og:url" content="http://zhengboyang.com/2016/05/19/Head-First-Python-Web开发/index.html">
+<meta property="og:site_name" content="Maxmengt's Blog">
+<meta property="og:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
+记笔记记笔记ing…">
+<meta property="og:updated_time" content="2016-05-18T17:34:37.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Head First Python Web开发">
+<meta name="twitter:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
+记笔记记笔记ing…">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Head First Python Web开发 | Maxmengt's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans,en,default">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75030160-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5bed51f38b4d402a75f88ccf6408846f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Maxmengt's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'RE7RdDy_uAsmzGxU7_57','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Head First Python Web开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-19T01:21:06+08:00" content="2016-05-19">
+              2016-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/19/Head-First-Python-Web开发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/Head-First-Python-Web开发/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。</p>
+<p>记笔记记笔记ing…</p>
+<a id="more"></a>
+<h4 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h4><p><strong>通用网关接口（Common Gateway Interface, CGI）</strong>是一种重要的互联网技术。<br>CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。（CGI程序：符合CGI标准的程序）</p>
+<p>CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体。</p>
+<p>另外，编程语言Perl是一个广泛被用来编写CGI程序的语言，但CGI的一个目的是要独立于任何语言的。Web服务器无须在这个问题上对语言有任何了解。事实上，CGI程序可以用任何脚本语言或者是完全独立编程语言实现，只要这个语言可以在这个系统上运行。除Perl外，像Unix shell script, Python, Ruby, PHP, Tcl, C/C++,和Visual Basic都可以用来编写CGI程序。<br><br></p>
+<h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p><strong>模型-视图-控制器（Model-View-Controller, MVC）</strong>是一种框架模式（非设计模式）。<br>MVC模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。除此之外，此模式通过对复杂度的简化，使程序结构更加直观。软件系统通过对自身基本部分分离的同时也赋予了各个基本部分应有的功能。</p>
+<ul>
+<li>模型：存储（以及有时处理）Web应用数据的代码。通常模型对象负责在数据库中存取数据。</li>
+<li>视图：格式化和显示Web应用用户界面的代码。通常视图是依据模型数据创建的。</li>
+<li>控制器：将Web应用“粘合”在一起并提供业务逻辑的代码。通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据。</li>
+</ul>
+<p>这里有一个通过 JavaScript 所实现的一个基础 MVC 模型，请注意的是：<em>MVC 不是一种技术，仅是一种理念</em>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 Model, View, Controller</span></span><br><span class="line"><span class="keyword">var</span> M = &#123;&#125;, V = &#123;&#125;, C = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Model 负责存放资料</span></span><br><span class="line">M.data = <span class="string">"hello world"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// View 负责将资料输出到屏幕上</span></span><br><span class="line">V.render = <span class="function"><span class="keyword">function</span> (<span class="params">M</span>) </span>&#123; alert(M.data); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Controller 作为一个 M 和 V 的桥梁</span></span><br><span class="line">C.handleOnload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; V.render(M); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在网页读取的时候呼叫 Controller</span></span><br><span class="line"><span class="built_in">window</span>.onload = C.handleOnload;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="Python-Pickle"><a href="#Python-Pickle" class="headerlink" title="Python Pickle"></a>Python Pickle</h4><p><strong>Python标准库的pickle模块可以容易而高效地将Python数据对象保存到磁盘以及从磁盘恢复。</strong></p>
+<p>Python的pickle模块实现了基本的数据序列和反序列化。通过pickle模块的序列化操作我们能够将程序中运行的对象信息保存到文件中去，持久存储；通过pickle模块的反序列化操作，我们能够从文件中创建上一次程序保存的对象。</p>
+<p>pickle模块使用的数据格式是Python专用的，并且不同版本不向后兼容，同时也不能被其他语言所识别。（不同于关系数据库，这种方式恰恰满足了面向对象的封装性原则——即对象的数据只能通过这个对象自身的public接口来访问）</p>
+<ul>
+<li>pickle.dump()函数将数据保存到磁盘</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mydata.pickle'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> mysavedata:</span><br><span class="line">    pickle.dump(p[<span class="number">1</span>, <span class="number">2</span>, <span class="string">'three'</span>], mysavedata)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>pickle.load()函数从磁盘恢复数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mydata.pickle'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> myrestoredata:</span><br><span class="line">    a_list = pickle.load(myrestoredata)</span><br><span class="line">print(a_list)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="用Python构建Web服务器"><a href="#用Python构建Web服务器" class="headerlink" title="用Python构建Web服务器"></a>用Python构建Web服务器</h4><p><strong>Python标准库http.server模块可以用来在Python中建立一个简单的Web服务器。</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> http.server <span class="keyword">import</span> HTTPServer, CGIHTTPRequestHandler <span class="comment"># 导入HTTP服务器和CGI模块</span></span><br><span class="line"></span><br><span class="line">port = <span class="number">8080</span> <span class="comment"># 指定一个端口</span></span><br><span class="line">httpd = HTTPServer((<span class="string">''</span>, port), CGIHTTPRequestHandler) <span class="comment"># 创建一个HTTP服务器</span></span><br><span class="line">print(<span class="string">'Starting simple_httpd on port: '</span> + str(httpd.server_port))</span><br><span class="line">httpd.serve_forever() <span class="comment"># 启动服务器</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="Python-Template类"><a href="#Python-Template类" class="headerlink" title="Python Template类"></a>Python Template类</h4><p>Python标准库string模块包括一个名为Template的类，它<strong>支持简单的字符串替换</strong>。<br>$substitute(mapping, <strong>kwds)$<br>$safe_substitute(mapping, </strong>kwds)$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> string <span class="keyword">import</span> Template</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Template(<span class="string">'$who likes $what'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.substitute(who=<span class="string">'tim'</span>, what=<span class="string">'kung pao'</span>)</span><br><span class="line"><span class="string">'tim likes kung pao'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = dict(who=<span class="string">'tim'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'Give $who $100'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">ValueError: Invalid placeholder <span class="keyword">in</span> string: line <span class="number">1</span>, col <span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">KeyError: <span class="string">'what'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).safe_substitute(d)</span><br><span class="line"><span class="string">'tim likes $what'</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="使用Python的CGI模块来访问表单数据"><a href="#使用Python的CGI模块来访问表单数据" class="headerlink" title="使用Python的CGI模块来访问表单数据"></a>使用Python的CGI模块来访问表单数据</h4><p>Python标准库CGI模块对编写CGI脚本提供了支持，可以<strong>使用cgi.FieldStorage()访问作为Web请求一部分发送给Web服务器的数据</strong>，数据将作为一个Python字典。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cgi</span><br><span class="line">form_data = cgi.FieldStorage()</span><br><span class="line"><span class="comment"># name = 'which_athlete'</span></span><br><span class="line">athlete_name = form_data[<span class="string">'which_athlete'</span>].value <span class="comment"># 从表单数据访问一个指定的数据</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="启用CGI跟踪来帮助解决错误"><a href="#启用CGI跟踪来帮助解决错误" class="headerlink" title="启用CGI跟踪来帮助解决错误"></a>启用CGI跟踪来帮助解决错误</h4><p>CGI标准指出服务器端程序（CGI脚本）生成的任何输出都会由Web服务器捕获并发送到等待的Web浏览器。具体来说，会捕获发送到STDOUT（标准输出）的所有内容。</p>
+<p>当CGI脚本产生异常时，Python将把错误消息显示在STDERR（标准错误输出）上。CGI机制会忽略这个输出，因为它想要的只是CGI脚本的标准输出。</p>
+<p>令人欣喜的是，<strong>Python的标准库提供了一个CGI跟踪模块（cgitb），启用模块时，会在Web浏览器上显示详细的错误消息</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cgitb</span><br><span class="line">cgitb.enable()  <span class="comment"># 打开cgi跟踪</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="使用Python的glob模块处理文件名列表"><a href="#使用Python的glob模块处理文件名列表" class="headerlink" title="使用Python的glob模块处理文件名列表"></a>使用Python的glob模块处理文件名列表</h4><p>Python标准库glob模块非常适合处理文件名列表，用它可以<strong>查找符合特定规则的文件路径名</strong>。类似windows下的文件搜索功能。</p>
+<p>glob查找文件只用到三个匹配符：”*“, “?”, “[]”：</p>
+<ul>
+<li>“*” 匹配0个或多个字符</li>
+<li>“?” 匹配单个字符</li>
+<li>“[]” 匹配指定范围内的字符</li>
+</ul>
+<p>$glob.glob(pathname)$ <em>pathname can be either absolute or relative</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> glob</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>files = glob.glob(<span class="string">r"E:/*.txt"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>files</span><br><span class="line">[<span class="string">'E:/apekk Lisk.txt'</span>, <span class="string">'E:/apr License.txt'</span>, <span class="string">'E:/Changelog-pre1.8.txt'</span>, <span class="string">'E:/Changelog.txt'</span>, <span class="string">'E:/githelp.txt'</span>, <span class="string">'E:/TortoiseGit License.txt'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(files)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>$glob.iglob(pathname)$ <em>pathname can be either absolute or relative</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import glob</span><br><span class="line">&gt;&gt;&gt; files = glob.iglob(r"E:/*.txt")</span><br><span class="line">&gt;&gt;&gt; files</span><br><span class="line">&lt;generator object iglob at 0x000000000319C3A8&gt;</span><br><span class="line">&gt;&gt;&gt; type(files)</span><br><span class="line">&lt;class 'generator'&gt;</span><br><span class="line">&gt;&gt;&gt; for file in files:</span><br><span class="line">	print(file)</span><br><span class="line">E:/apekk Lisk.txt</span><br><span class="line">E:/apr License.txt</span><br><span class="line">E:/Changelog-pre1.8.txt</span><br><span class="line">E:/Changelog.txt</span><br><span class="line">E:/githelp.txt</span><br><span class="line">E:/TortoiseGit License.txt</span><br></pre></td></tr></table></figure></p>
+<p>官方文档里是这样描述 $iglob$ 与 $glob$ 的区别的： <em>iglob() return an iterator which yields the same values as glob() without actually storing them all simultaneously.</em><br>已经说得很明白了所以不再赘述。</p>
+<p>完。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/Head-First-Python/" rel="tag">#Head First Python</a>
+          
+            <a href="/tags/Web/" rel="tag">#Web</a>
+          
+            <a href="/tags/CGI/" rel="tag">#CGI</a>
+          
+            <a href="/tags/MVC/" rel="tag">#MVC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/17/浅谈差分约束系统与SPFA算法/" rel="next" title="浅谈差分约束系统与SPFA算法">
+                <i class="fa fa-chevron-left"></i> 浅谈差分约束系统与SPFA算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Zheng Boyang" />
+          <p class="site-author-name" itemprop="name">Zheng Boyang</p>
+          <p class="site-description motion-element" itemprop="description">Why So Serious?</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Maxmengt" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/mengt-max" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Zhihu
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGI"><span class="nav-number">1.</span> <span class="nav-text">CGI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC"><span class="nav-number">2.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-Pickle"><span class="nav-number">3.</span> <span class="nav-text">Python Pickle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用Python构建Web服务器"><span class="nav-number">4.</span> <span class="nav-text">用Python构建Web服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-Template类"><span class="nav-number">5.</span> <span class="nav-text">Python Template类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Python的CGI模块来访问表单数据"><span class="nav-number">6.</span> <span class="nav-text">使用Python的CGI模块来访问表单数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启用CGI跟踪来帮助解决错误"><span class="nav-number">7.</span> <span class="nav-text">启用CGI跟踪来帮助解决错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Python的glob模块处理文件名列表"><span class="nav-number">8.</span> <span class="nav-text">使用Python的glob模块处理文件名列表</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zheng Boyang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'zhengboyangcom';
+      var disqus_identifier = '2016/05/19/Head-First-Python-Web开发/';
+      var disqus_title = 'Head First Python Web开发';
+      var disqus_url = 'http://zhengboyang.com/2016/05/19/Head-First-Python-Web开发/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+
+</body>
+</html>
