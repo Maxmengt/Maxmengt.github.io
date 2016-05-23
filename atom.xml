@@ -93,7 +93,7 @@ search hello
     <link href="http://zhengboyang.com/2016/05/19/Head-First-Python-Web%E5%BC%80%E5%8F%91/"/>
     <id>http://zhengboyang.com/2016/05/19/Head-First-Python-Web开发/</id>
     <published>2016-05-18T17:21:06.998Z</published>
-    <updated>2016-05-18T17:34:37.003Z</updated>
+    <updated>2016-05-23T05:07:39.330Z</updated>
     
     <content type="html">&lt;p&gt;本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。&lt;/p&gt;
 &lt;p&gt;记笔记记笔记ing…&lt;/p&gt;
@@ -116,7 +116,7 @@ search hello
 &lt;ul&gt;
 &lt;li&gt;pickle.dump()函数将数据保存到磁盘&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; pickle&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; open(&lt;span class=&quot;string&quot;&gt;&#39;mydata.pickle&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;wb&#39;&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; mysavedata:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pickle.dump(p[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;three&#39;&lt;/span&gt;], mysavedata)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; pickle&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; open(&lt;span class=&quot;string&quot;&gt;&#39;mydata.pickle&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;wb&#39;&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; mysavedata:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pickle.dump([&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;three&#39;&lt;/span&gt;], mysavedata)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;pickle.load()函数从磁盘恢复数据&lt;/li&gt;
 &lt;/ul&gt;
@@ -583,11 +583,11 @@ search hello
       <category term="ACM" scheme="http://zhengboyang.com/categories/ACM/"/>
     
     
+      <category term="数据结构" scheme="http://zhengboyang.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
       <category term="KMP" scheme="http://zhengboyang.com/tags/KMP/"/>
     
       <category term="栈" scheme="http://zhengboyang.com/tags/%E6%A0%88/"/>
-    
-      <category term="数据结构" scheme="http://zhengboyang.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="字符串处理" scheme="http://zhengboyang.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/"/>
     
@@ -771,11 +771,11 @@ search hello
     
       <category term="图论" scheme="http://zhengboyang.com/tags/%E5%9B%BE%E8%AE%BA/"/>
     
+      <category term="BFS" scheme="http://zhengboyang.com/tags/BFS/"/>
+    
       <category term="数据结构" scheme="http://zhengboyang.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="树状数组" scheme="http://zhengboyang.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="BFS" scheme="http://zhengboyang.com/tags/BFS/"/>
     
   </entry>
   

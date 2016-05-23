@@ -71,7 +71,7 @@
 <meta property="og:site_name" content="Maxmengt's Blog">
 <meta property="og:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
 记笔记记笔记ing…">
-<meta property="og:updated_time" content="2016-05-18T17:34:37.003Z">
+<meta property="og:updated_time" content="2016-05-23T05:07:39.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Head First Python Web开发">
 <meta name="twitter:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
@@ -366,7 +366,7 @@
 <ul>
 <li>pickle.dump()函数将数据保存到磁盘</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mydata.pickle'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> mysavedata:</span><br><span class="line">    pickle.dump(p[<span class="number">1</span>, <span class="number">2</span>, <span class="string">'three'</span>], mysavedata)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mydata.pickle'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> mysavedata:</span><br><span class="line">    pickle.dump([<span class="number">1</span>, <span class="number">2</span>, <span class="string">'three'</span>], mysavedata)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>pickle.load()函数从磁盘恢复数据</li>
 </ul>
