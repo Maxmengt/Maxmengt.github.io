@@ -71,7 +71,7 @@
 <meta property="og:site_name" content="Maxmengt's Blog">
 <meta property="og:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
 记笔记记笔记ing…">
-<meta property="og:updated_time" content="2016-05-23T05:07:39.330Z">
+<meta property="og:updated_time" content="2016-05-23T05:12:19.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Head First Python Web开发">
 <meta name="twitter:description" content="本文是对《Head First Python》第7章 Web开发 的简单总结以及其中重要知识点的扩展介绍。
@@ -374,7 +374,7 @@
 <p><br></p>
 <h4 id="用Python构建Web服务器"><a href="#用Python构建Web服务器" class="headerlink" title="用Python构建Web服务器"></a>用Python构建Web服务器</h4><p><strong>Python标准库http.server模块可以用来在Python中建立一个简单的Web服务器。</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> http.server <span class="keyword">import</span> HTTPServer, CGIHTTPRequestHandler <span class="comment"># 导入HTTP服务器和CGI模块</span></span><br><span class="line"></span><br><span class="line">port = <span class="number">8080</span> <span class="comment"># 指定一个端口</span></span><br><span class="line">httpd = HTTPServer((<span class="string">''</span>, port), CGIHTTPRequestHandler) <span class="comment"># 创建一个HTTP服务器</span></span><br><span class="line">print(<span class="string">'Starting simple_httpd on port: '</span> + str(httpd.server_port))</span><br><span class="line">httpd.serve_forever() <span class="comment"># 启动服务器</span></span><br></pre></td></tr></table></figure></p>
 <p><br></p>
-<h4 id="Python-Template类"><a href="#Python-Template类" class="headerlink" title="Python Template类"></a>Python Template类</h4><p>Python标准库string模块包括一个名为Template的类，它<strong>支持简单的字符串替换</strong>。<br>$substitute(mapping, <strong>kwds)$<br>$safe_substitute(mapping, </strong>kwds)$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> string <span class="keyword">import</span> Template</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Template(<span class="string">'$who likes $what'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.substitute(who=<span class="string">'tim'</span>, what=<span class="string">'kung pao'</span>)</span><br><span class="line"><span class="string">'tim likes kung pao'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = dict(who=<span class="string">'tim'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'Give $who $100'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">ValueError: Invalid placeholder <span class="keyword">in</span> string: line <span class="number">1</span>, col <span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">KeyError: <span class="string">'what'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).safe_substitute(d)</span><br><span class="line"><span class="string">'tim likes $what'</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Python-Template类"><a href="#Python-Template类" class="headerlink" title="Python Template类"></a>Python Template类</h4><p>Python标准库string模块包括一个名为Template的类，它<strong>支持简单的字符串替换</strong>。<br>$substitute(mapping, <strong>kwds)$<br><br>$safe_substitute(mapping, </strong>kwds)$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> string <span class="keyword">import</span> Template</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Template(<span class="string">'$who likes $what'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.substitute(who=<span class="string">'tim'</span>, what=<span class="string">'kung pao'</span>)</span><br><span class="line"><span class="string">'tim likes kung pao'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = dict(who=<span class="string">'tim'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'Give $who $100'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">ValueError: Invalid placeholder <span class="keyword">in</span> string: line <span class="number">1</span>, col <span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).substitute(d)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">...</span><br><span class="line">KeyError: <span class="string">'what'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Template(<span class="string">'$who likes $what'</span>).safe_substitute(d)</span><br><span class="line"><span class="string">'tim likes $what'</span></span><br></pre></td></tr></table></figure></p>
 <p><br></p>
 <h4 id="使用Python的CGI模块来访问表单数据"><a href="#使用Python的CGI模块来访问表单数据" class="headerlink" title="使用Python的CGI模块来访问表单数据"></a>使用Python的CGI模块来访问表单数据</h4><p>Python标准库CGI模块对编写CGI脚本提供了支持，可以<strong>使用cgi.FieldStorage()访问作为Web请求一部分发送给Web服务器的数据</strong>，数据将作为一个Python字典。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cgi</span><br><span class="line">form_data = cgi.FieldStorage()</span><br><span class="line"><span class="comment"># name = 'which_athlete'</span></span><br><span class="line">athlete_name = form_data[<span class="string">'which_athlete'</span>].value <span class="comment"># 从表单数据访问一个指定的数据</span></span><br></pre></td></tr></table></figure></p>
 <p><br></p>
@@ -532,7 +532,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -540,7 +540,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -549,7 +549,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

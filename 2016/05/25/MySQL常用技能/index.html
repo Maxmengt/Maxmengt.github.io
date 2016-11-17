@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DFS,树,树型DP," />
+  <meta name="keywords" content="MySQL," />
 
 
 
@@ -63,16 +63,22 @@
 
 
 
-<meta name="description" content="题目大意给定一棵 $N$ 个节点的树，点上有价值为 $A_i$，边上有时间花费 $t_j$。要求从编号 $1$ 的节点出发，到达编号为 $N$ 的节点，问是否能在给定的 $T$ 时间里到达，若能，输出可以获得的最大价值。每个节点的价值只能算一次，但边每走一次都得消耗时间。$(1 \le n \le 100, 0 \le T \le 500, 0 \le A_i \le 100, 0 \le t_j">
+<meta name="description" content="鉴于Web开发需要，特地花时间学了下MySQL关系型数据库的使用。
+本文是MySQL常用语句的简单总结，主要供自己查阅使用。反复查阅能够加深印象，提升技能熟练度。如果你还不知道 MySQL 是什么，建议先看慕课网 与MySQL的零距离接触 的视频教程。（慕课网不给我软广费真的大丈夫？
+记笔记记笔记ing…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HDU 4276 The Ghost Blows Light（树型DP）">
-<meta property="og:url" content="http://zhengboyang.com/2016/05/17/hdu-4276/index.html">
+<meta property="og:title" content="MySQL常用技能">
+<meta property="og:url" content="http://zhengboyang.com/2016/05/25/MySQL常用技能/index.html">
 <meta property="og:site_name" content="Maxmengt's Blog">
-<meta property="og:description" content="题目大意给定一棵 $N$ 个节点的树，点上有价值为 $A_i$，边上有时间花费 $t_j$。要求从编号 $1$ 的节点出发，到达编号为 $N$ 的节点，问是否能在给定的 $T$ 时间里到达，若能，输出可以获得的最大价值。每个节点的价值只能算一次，但边每走一次都得消耗时间。$(1 \le n \le 100, 0 \le T \le 500, 0 \le A_i \le 100, 0 \le t_j">
-<meta property="og:updated_time" content="2016-05-17T10:18:44.918Z">
+<meta property="og:description" content="鉴于Web开发需要，特地花时间学了下MySQL关系型数据库的使用。
+本文是MySQL常用语句的简单总结，主要供自己查阅使用。反复查阅能够加深印象，提升技能熟练度。如果你还不知道 MySQL 是什么，建议先看慕课网 与MySQL的零距离接触 的视频教程。（慕课网不给我软广费真的大丈夫？
+记笔记记笔记ing…">
+<meta property="og:updated_time" content="2016-05-25T08:06:23.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HDU 4276 The Ghost Blows Light（树型DP）">
-<meta name="twitter:description" content="题目大意给定一棵 $N$ 个节点的树，点上有价值为 $A_i$，边上有时间花费 $t_j$。要求从编号 $1$ 的节点出发，到达编号为 $N$ 的节点，问是否能在给定的 $T$ 时间里到达，若能，输出可以获得的最大价值。每个节点的价值只能算一次，但边每走一次都得消耗时间。$(1 \le n \le 100, 0 \le T \le 500, 0 \le A_i \le 100, 0 \le t_j">
+<meta name="twitter:title" content="MySQL常用技能">
+<meta name="twitter:description" content="鉴于Web开发需要，特地花时间学了下MySQL关系型数据库的使用。
+本文是MySQL常用语句的简单总结，主要供自己查阅使用。反复查阅能够加深印象，提升技能熟练度。如果你还不知道 MySQL 是什么，建议先看慕课网 与MySQL的零距离接触 的视频教程。（慕课网不给我软广费真的大丈夫？
+记笔记记笔记ing…">
 
 
 
@@ -90,7 +96,7 @@
   };
 </script>
 
-  <title> HDU 4276 The Ghost Blows Light（树型DP） | Maxmengt's Blog </title>
+  <title> MySQL常用技能 | Maxmengt's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans,en,default">
@@ -277,7 +283,7 @@
             
             
               
-                HDU 4276 The Ghost Blows Light（树型DP）
+                MySQL常用技能
               
             
           </h1>
@@ -289,8 +295,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T18:15:07+08:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-05-25T16:06:13+08:00" content="2016-05-25">
+              2016-05-25
             </time>
           </span>
 
@@ -303,8 +309,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM</span>
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
                   </a>
                 </span>
 
@@ -319,8 +325,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/17/hdu-4276/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/hdu-4276/" itemprop="commentsCount"></span>
+                <a href="/2016/05/25/MySQL常用技能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/MySQL常用技能/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,20 +348,62 @@
       
 
       
-        <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4276" target="_blank" rel="external">题目</a>大意</h3><p>给定一棵 $N$ 个节点的树，点上有价值为 $A_i$，边上有时间花费 $t_j$。要求从编号 $1$ 的节点出发，到达编号为 $N$ 的节点，问是否能在给定的 $T$ 时间里到达，若能，输出可以获得的最大价值。每个节点的价值只能算一次，但边每走一次都得消耗时间。<br>$(1 \le n \le 100, 0 \le T \le 500, 0 \le A_i \le 100, 0 \le t_j \le 100)$</p>
+        <p>鉴于Web开发需要，特地花时间学了下MySQL关系型数据库的使用。</p>
+<p>本文是MySQL常用语句的简单总结，主要供自己查阅使用。反复查阅能够加深印象，提升技能熟练度。如果你还不知道 MySQL 是什么，建议先看慕课网 <a href="http://www.imooc.com/learn/122" target="_blank" rel="external">与MySQL的零距离接触</a> 的视频教程。（慕课网不给我软广费真的大丈夫？</p>
+<p>记笔记记笔记ing…</p>
 <a id="more"></a>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><strong>树型DP</strong>。</p>
-<p>先 DFS 算出从 $1$ 号点到 $N$ 号点的最小花费，若大于时间 $T$ 直接输出。否则将之前 DFS 到的路径上的花费赋为 $0$，然后直接 树型DP 就可以了。</p>
-<p>$dp[i][j]$ 表示在 $i$ 点花费时间 $j$ 所能获得的最大价值。由于必走路径上的花费已赋为 $0$，那么 $dp$ 时必会取到路径上节点的价值。然后状态方程转移的原理类似于01背包，只不过多了一层枚举子节点花费多少时间，这是跟普通01背包不同的地方，普通01背包是固定花费多少价值多少，而这里是枚举花费多少价值多少。</p>
-<p>详细请看代码。</p>
-<p>Ps: DP还是太弱啦QAQ，以后DP还是得多做点题目。</p>
-<h3 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Edge &#123;</span><br><span class="line">    <span class="keyword">int</span> to, cost, next;</span><br><span class="line">    Edge( <span class="keyword">int</span> to = <span class="number">0</span>, <span class="keyword">int</span> cost = <span class="number">0</span>, <span class="keyword">int</span> next = <span class="number">0</span> ) : to(to), cost(cost), next(next) &#123;&#125;</span><br><span class="line">&#125; G[MAXN &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n, T;</span><br><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"><span class="keyword">int</span> tot, head[MAXN];</span><br><span class="line"><span class="keyword">int</span> dp[MAXN][MAXN &lt;&lt; <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    tot = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span>(head));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> cost)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    G[tot] = Edge(v, cost, head[u]);</span><br><span class="line">    head[u] = tot++;</span><br><span class="line">    G[tot] = Edge(u, cost, head[v]);</span><br><span class="line">    head[v] = tot++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findPath</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> pre, <span class="keyword">int</span> cost)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( u == n ) <span class="keyword">return</span> cost;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = head[u]; ~i; i = G[i].next ) &#123;</span><br><span class="line">        Edge &amp;e = G[i];</span><br><span class="line">        <span class="keyword">if</span>( e.to == pre ) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> d = findPath(e.to, u, cost + e.cost);</span><br><span class="line">        <span class="keyword">if</span>( d ) &#123;</span><br><span class="line">            e.cost = <span class="number">0</span>;</span><br><span class="line">            G[i ^ <span class="number">1</span>].cost = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> pre)</span></span><br><span class="line"></span>&#123;  </span><br><span class="line">    fill(dp[u], dp[u] + T + <span class="number">1</span>, a[u]);</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = head[u]; ~i; i = G[i].next ) &#123;</span><br><span class="line">        Edge &amp;e = G[i];</span><br><span class="line">        <span class="keyword">if</span>( e.to == pre ) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> temp = e.cost &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        dfs(e.to, u);</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> j = T; j &gt;= temp; -- j ) &#123; <span class="comment">// 倒序枚举，原理同一维01背包</span></span><br><span class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> k = temp; k &lt;= j; ++ k ) &#123;</span><br><span class="line">                dp[u][j]  = max(dp[u][j], dp[u][j - k] + dp[e.to][k - temp]);</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>( ~<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;T) ) &#123;</span><br><span class="line">        init();</span><br><span class="line">        <span class="keyword">int</span> x, y, t;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++ i ) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;t);</span><br><span class="line">            addEdge(x, y, t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i ) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, a + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cost = findPath(<span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>( cost &gt; T ) &#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">"Human beings die in pursuit of wealth, and birds die in pursuit of food!"</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T -= cost;</span><br><span class="line">        dfs(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[<span class="number">1</span>][T]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h3><ul>
-<li>01背包：先枚举物品，再逆序枚举容量</li>
-<li>完全背包：先枚举物品，再正序枚举容量</li>
-<li>分组背包：先逆序枚举容量，再枚举物品（最外层枚举每一组）</li>
+<h3 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h3><p>MySQL 的默认端口号是：3306。</p>
+<h4 id="启动-停止MySQL服务"><a href="#启动-停止MySQL服务" class="headerlink" title="启动/停止MySQL服务"></a>启动/停止MySQL服务</h4><p>启动</p>
+<pre><code>net start mysql
+</code></pre><p>停止</p>
+<pre><code>net stop mysql
+</code></pre><h4 id="MySQL登录-退出"><a href="#MySQL登录-退出" class="headerlink" title="MySQL登录/退出"></a>MySQL登录/退出</h4><p>登录</p>
+<pre><code>mysql -uroot -p
+Enter password: ******
+</code></pre><p>退出</p>
+<pre><code>exit;
+</code></pre><h4 id="修改MySQL提示符"><a href="#修改MySQL提示符" class="headerlink" title="修改MySQL提示符"></a>修改MySQL提示符</h4><p>连接客户端时通过参数指定</p>
+<pre><code>shell&gt;mysql -uroot -p --prompt 提示符
+</code></pre><p>连接上客户端后，通过 prompt 命令修改</p>
+<pre><code>mysql&gt;prompt 提示符;
+</code></pre><p>可用的MySQL提示符</p>
+<pre><code>参数                描述
+\D               完整的日期
+\d               当前数据库
+\h               服务器名称
+\u               当前用户
+</code></pre><h4 id="MySQL常用命令"><a href="#MySQL常用命令" class="headerlink" title="MySQL常用命令"></a>MySQL常用命令</h4><p>显示当前服务器版本</p>
+<pre><code>SELECT VERSION();
+</code></pre><p>显示当前日期时间</p>
+<pre><code>SELECT NOW();
+</code></pre><p>显示当前用户</p>
+<pre><code>SELECT USER();
+</code></pre><h4 id="MySQL语句规范"><a href="#MySQL语句规范" class="headerlink" title="MySQL语句规范"></a>MySQL语句规范</h4><ul>
+<li>关键字与函数名称全部大写</li>
+<li>数据库名称、表名称、字段名称全部小写</li>
+<li>SQL语句必须以分号结尾</li>
 </ul>
-
+<h4 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h4><p>创建数据库</p>
+<pre><code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET = [=] charset_name;
+</code></pre><p>查看当前服务器下的数据库列表</p>
+<pre><code>SHOW {DATABASES | SCHEMAS} [LIKE &apos;pattern&apos; | WHERE expr];
+</code></pre><p>修改数据库</p>
+<pre><code>ALTER {DATABASE | SCHEMA} [db_name] [DEFAULT] CHARACTER SET [=] charset_name;
+</code></pre><p>删除数据库</p>
+<pre><code>DROP {DATABASE | SCHEMA} [IF EXISTS] db_name;
+</code></pre><h3 id="数据类型与操作数据表"><a href="#数据类型与操作数据表" class="headerlink" title="数据类型与操作数据表"></a>数据类型与操作数据表</h3><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>数据类型是指列、存储过程参数、表达式和局部变量的数据特征，它决定了数据的存储格式，代表了不同的信息类型。</p>
+<p>MySQL支持的数据类型包括整型、浮点型、日期时间型、字符型。</p>
+<h4 id="操作数据表"><a href="#操作数据表" class="headerlink" title="操作数据表"></a>操作数据表</h4><p>数据表（或称表）是数据库最重要的组成部分之一，是其他对象的基础。</p>
+<h5 id="打开数据库"><a href="#打开数据库" class="headerlink" title="打开数据库"></a>打开数据库</h5><pre><code>USE 数据库名称;
+</code></pre><h5 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h5><pre><code>CREATE TABLE [IF NOT EXISTS] table_name (
+    column_name data_type,
+    ...
+)
+</code></pre><h5 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h5><pre><code>SHOW TABLES [FROM db_name];
+</code></pre><h5 id="查看数据表结构"><a href="#查看数据表结构" class="headerlink" title="查看数据表结构"></a>查看数据表结构</h5><pre><code>SHOW COLUMNS FROM tbl_name
+</code></pre><h5 id="插入记录"><a href="#插入记录" class="headerlink" title="插入记录"></a>插入记录</h5><pre><code>INSERT [INTO] tbl_name[(col_name,...)] VALUES(val,...)
+</code></pre><h5 id="记录查找"><a href="#记录查找" class="headerlink" title="记录查找"></a>记录查找</h5><pre><code>SELECT expr,... FROM tbl_name
+</code></pre>
       
     </div>
 
@@ -369,11 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DFS/" rel="tag">#DFS</a>
-          
-            <a href="/tags/树/" rel="tag">#树</a>
-          
-            <a href="/tags/树型DP/" rel="tag">#树型DP</a>
+            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
           
         </div>
       
@@ -382,17 +426,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/17/uvalive-5094/" rel="next" title="UVALive 5094 THE MATRIX PROBLEM（差分约束）">
-                <i class="fa fa-chevron-left"></i> UVALive 5094 THE MATRIX PROBLEM（差分约束）
+              <a href="/2016/05/25/MySQL学习笔记/" rel="next" title="MySQL学习笔记">
+                <i class="fa fa-chevron-left"></i> MySQL学习笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/17/浅谈差分约束系统与SPFA算法/" rel="prev" title="浅谈差分约束系统与SPFA算法">
-                浅谈差分约束系统与SPFA算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -565,7 +605,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题代码"><span class="nav-number">3.</span> <span class="nav-text">解题代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识扩展"><span class="nav-number">4.</span> <span class="nav-text">知识扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的使用"><span class="nav-number">1.</span> <span class="nav-text">MySQL的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-停止MySQL服务"><span class="nav-number">1.1.</span> <span class="nav-text">启动/停止MySQL服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL登录-退出"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL登录/退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改MySQL提示符"><span class="nav-number">1.3.</span> <span class="nav-text">修改MySQL提示符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL常用命令"><span class="nav-number">1.4.</span> <span class="nav-text">MySQL常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL语句规范"><span class="nav-number">1.5.</span> <span class="nav-text">MySQL语句规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库操作"><span class="nav-number">1.6.</span> <span class="nav-text">数据库操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型与操作数据表"><span class="nav-number">2.</span> <span class="nav-text">数据类型与操作数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作数据表"><span class="nav-number">2.2.</span> <span class="nav-text">操作数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#打开数据库"><span class="nav-number">2.2.1.</span> <span class="nav-text">打开数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建数据表"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据表"><span class="nav-number">2.2.3.</span> <span class="nav-text">查看数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据表结构"><span class="nav-number">2.2.4.</span> <span class="nav-text">查看数据表结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入记录"><span class="nav-number">2.2.5.</span> <span class="nav-text">插入记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#记录查找"><span class="nav-number">2.2.6.</span> <span class="nav-text">记录查找</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -833,9 +873,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'zhengboyangcom';
-      var disqus_identifier = '2016/05/17/hdu-4276/';
-      var disqus_title = 'HDU 4276 The Ghost Blows Light（树型DP）';
-      var disqus_url = 'http://zhengboyang.com/2016/05/17/hdu-4276/';
+      var disqus_identifier = '2016/05/25/MySQL常用技能/';
+      var disqus_title = 'MySQL常用技能';
+      var disqus_url = 'http://zhengboyang.com/2016/05/25/MySQL常用技能/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
