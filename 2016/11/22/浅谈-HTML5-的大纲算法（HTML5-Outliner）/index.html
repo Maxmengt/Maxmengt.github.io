@@ -1,0 +1,966 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="8ZCmeLcN_tC3wA7DqyaP4M-46iGo2wwkX16icUh5e9c" />
+
+
+
+
+  <meta name="baidu-site-verification" content="o6McFxBZN2" />
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML,HTML5,FE Engineer,大纲算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Maxmengt's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/M_.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="写完这篇博客感觉 HTML5 的大纲算法就是大坑，很多地方的描述都是有所出入的，所以只能一切靠事实（实验）说话…
+注：笔者在文末会介绍两种使 HTML 大纲可视化的方法，读者可以自行选择。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈 HTML5 的大纲算法（HTML5 Outliner）">
+<meta property="og:url" content="http://zhengboyang.com/2016/11/22/浅谈-HTML5-的大纲算法（HTML5-Outliner）/index.html">
+<meta property="og:site_name" content="Maxmengt's Blog">
+<meta property="og:description" content="写完这篇博客感觉 HTML5 的大纲算法就是大坑，很多地方的描述都是有所出入的，所以只能一切靠事实（实验）说话…
+注：笔者在文末会介绍两种使 HTML 大纲可视化的方法，读者可以自行选择。">
+<meta property="og:image" content="http://zhengboyang.com/images/section_1.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_2.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_4.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_3.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_6.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_7.png">
+<meta property="og:image" content="http://zhengboyang.com/images/section_9.png">
+<meta property="og:updated_time" content="2016-11-22T03:50:51.286Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈 HTML5 的大纲算法（HTML5 Outliner）">
+<meta name="twitter:description" content="写完这篇博客感觉 HTML5 的大纲算法就是大坑，很多地方的描述都是有所出入的，所以只能一切靠事实（实验）说话…
+注：笔者在文末会介绍两种使 HTML 大纲可视化的方法，读者可以自行选择。">
+<meta name="twitter:image" content="http://zhengboyang.com/images/section_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 浅谈 HTML5 的大纲算法（HTML5 Outliner） | Maxmengt's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans,en,default">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75030160-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5bed51f38b4d402a75f88ccf6408846f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Maxmengt's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'RE7RdDy_uAsmzGxU7_57','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈 HTML5 的大纲算法（HTML5 Outliner）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T11:15:33+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTML-HTML5/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML/HTML5</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/22/浅谈-HTML5-的大纲算法（HTML5-Outliner）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/22/浅谈-HTML5-的大纲算法（HTML5-Outliner）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写完这篇博客感觉 HTML5 的大纲算法就是大坑，很多地方的描述都是有所出入的，所以只能一切靠事实（实验）说话…</p>
+<p>注：笔者在文末会介绍两种使 HTML 大纲可视化的方法，读者可以自行选择。</p>
+<a id="more"></a>
+<h2 id="HTML4-的文档结构"><a href="#HTML4-的文档结构" class="headerlink" title="HTML4 的文档结构"></a>HTML4 的文档结构</h2><pre><code>文档结构，即 &lt;body&gt; 标记之间内容的语义结构，对呈现页面给用户是很重要的。HTML4 用文档中章节和子章节的概念去描述文档结构。一个章节由一个包含着标题元素（h1-h6）的div元素表示。这些html划分元素（HTML Dividing Elements）和标题元素（HTML Heading Elements）形成了文档的结构和纲要。
+</code></pre><p>优秀的文档结构，不单单有助于搜索引擎的优化（SEO），更是能为借助于屏幕阅读器浏览网页的盲人（或弱视力）用户提供巨大帮助。</p>
+<p>而正如上面讲的，在HTML5出现之前，HTML4便是通过 h1-h6 的标题元素来创建大纲。在一般情况下，只要合理正确的使用标题元素，的确可以为文档赋予一个良好结构的大纲。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML5新增了几个新元素使得开发者可以用标准语义去描述web文档的结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"subsection"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML4用文档中章节和子章节的概念去描述文档结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"subsubsection"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>文档的结构和纲要<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>划分元素（HTML Dividing Elements）和 </span><br><span class="line">        标题元素（HTML Heading Elements）形成了文档的结构和纲要。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的音频和视频<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该代码形成了如下大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_1.png" alt="section_1 outliner"></p>
+<p>上述代码对于每一个章节使用了一个包含着标题元素的 div 元素来表示，可 div 元素其实并不表示定义一个章节（在这里的作用是使文档结构化），事实上一个新的 HTML 标题元素（HTML Heading Element）的出现就意味着产生了新的章节。</p>
+<p>也就是说上述代码可以改成这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML5新增了几个新元素使得开发者可以用标准语义去描述web文档的结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML4用文档中章节和子章节的概念去描述文档结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>文档的结构和纲要<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这些html划分元素（HTML Dividing Elements）和 </span><br><span class="line">      标题元素（HTML Heading Elements）形成了文档的结构和纲要。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的音频和视频<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>检查发现其大纲并没有变化：</p>
+<p><img src="http://zhengboyang.com/images/section_2.png" alt="section_2 outliner"></p>
+<p>看起来还不错（笑</p>
+<p>然而，HTML 4 的文档结构定义和其隐含的非常粗糙的大纲算法造成了很多问题：</p>
+<ol>
+<li><p>由于 HTML4 实际上是以标题元素（h1-h6）作为章节的划分，并且标题元素的级别是其划分主副的关键，这也导致了文档间的合并变得十分困难。假如你要往一个主文档里合并子文档，那么就必须改变子文档里标题元素的级别（诸如将h1改为h2之类…）才能使文档大纲保持下来。而 HTML5 新引入的元素（<code>&lt;article&gt;</code>， <code>&lt;section&gt;</code>， <code>&lt;nav&gt;</code> 和 <code>&lt;aside&gt;</code>） 总是距离其最近的祖先章节的子章节， 与子文档章节内部的标题没有关系。</p>
+</li>
+<li><p>HTML4 中，所有的章节都是文档大纲中的一部分。但是文档并不总是这样，有些网站本身是聚合性质的，因此文档需要可以包含那些不属于大纲的章节，比如引用外来文档等。（HTML5 的 <code>&lt;blockquote&gt;</code>）</p>
+</li>
+<li><p>同样，HTML4 的大纲算法, 没有办法产生与网站相关而不是与文档相关的节段，比如 logos，menus，目录或版权信息和法律声明。（HTML5 的 <code>&lt;header</code>，<code>&lt;footer&gt;</code>）</p>
+</li>
+</ol>
+<p>可见，随着 HTML5 的应运而生，上述问题都在 HTML5 中得到了很好的解决。</p>
+<h2 id="HTML5-的大纲算法"><a href="#HTML5-的大纲算法" class="headerlink" title="HTML5 的大纲算法"></a>HTML5 的大纲算法</h2><h3 id="Defining-sections-and-headings（节段与标题）"><a href="#Defining-sections-and-headings（节段与标题）" class="headerlink" title="Defining sections and headings（节段与标题）"></a>Defining sections and headings（节段与标题）</h3><pre><code>&lt;body&gt; 元素定义了主节段，基于主节段，可以显式或隐式定义各个子节段的划分。显式定义的节段是通过&lt;body&gt;,  &lt;section&gt;,  &lt;article&gt;,  &lt;aside&gt;,  &lt;nav&gt; 这些标记中的内容。 （不包含 &lt;header&gt; 和 &lt;footer&gt;）
+</code></pre><p>注：事实上 MDN 里的说法是包含了 <code>&lt;header&gt;</code> 和 <code>&lt;footer&gt;</code> 的，但经过其他文档的查阅以及自身实验，可以发现二者其实并不是节段元素。</p>
+<p>HTML5 section 元素 (<code>&lt;section&gt;</code>) 表示文档中的一个区域（或节），比如，内容中的一个专题组。包括<code>&lt;section&gt;</code>，每种显式定义的节段一般都会包含一个标题（heading），通过是否包含标题（h1-h6）元素作为子节点来辨识每一个节段，其中，第一个 HTML 标题元素（<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code>之一）定义了当前节段的标题。</p>
+<p>值得注意的是，每个节段都可以有自己的标题结构，相关的标题级别只在节段中起作用。因此，即使是一个嵌套的 section 也能有 <code>&lt;h1&gt;</code>。</p>
+<p>示例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML5新增了几个新元素使得开发者可以用标准语义去描述web文档的结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML4用文档中章节和子章节的概念去描述文档结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">        文档的结构和纲要</span><br><span class="line">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的音频和视频<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>生成大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_4.png" alt="section_4 outliner"></p>
+<p>示例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的大纲算法<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML5新增了几个新元素使得开发者可以用标准语义去描述web文档的结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML4用文档中章节和子章节的概念去描述文档结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>文档的结构和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这些html划分元素（HTML sectioniding Elements）和 </span><br><span class="line">          标题元素（HTML Heading Elements）形成了文档的结构和纲要。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    HTML5 的音频和视频</span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>生成大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_3.png" alt="section_3 outliner"></p>
+<h3 id="Implicit-sectioning（隐式分节）"><a href="#Implicit-sectioning（隐式分节）" class="headerlink" title="Implicit sectioning（隐式分节）"></a>Implicit sectioning（隐式分节）</h3><p>说是隐式分节，其实主要目的就是为了与 HTML4 保持兼容，之前我们提到，在 HTML4 中一个新的 HTML 标题元素（<code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code>）的出现就意味着产生了新的章节，而这个性质在 HTML5 中保留了下来 —— 当其不是父节段第一个标题时，该方式将定义一个新的隐式节段（在不需要分节元素的情况下）。</p>
+<p>这种隐式定义节段的方式跟其在父节点中与之前标题的相对级别有关：</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document" target="_blank" rel="external">MDN中是这样说的</a>：</p>
+<pre><code>如果比之前的标题级别更低，那么在节段里开始新的隐式子节段；
+如果与前面标题的级别相同，那么闭合前面的节段（可能是显式标记的节段！）并开始新的同一级别的隐式节段；
+如果比之前标题的级别更高，那么关闭之前的节段并开始新的这个更高级别的隐式节段。
+</code></pre><p>然而<strong>经过我自己的尝试发现跟其描述有所出入（特别是第三点）</strong>，不知道是 MDN 文档的问题还是 程序 HTML5 Outliner 的问题（在尝试了几款其他 HTML5 Outliner 后倾向于是 MDN 的问题）。</p>
+<p>我试了不少样例，现在重新总结如下：</p>
+<p><strong>在同一显式节段内，并且比较时不包括前面其余显式定义的子节段</strong>，如果当前标题级别</p>
+<ul>
+<li>如果当前标题级别比之前的标题级别更低，那么在前面节段（显式或隐式）里开始新的隐式子节段</li>
+<li>如果当前标题级别与前面标题的级别相同，那么闭合前面的节段（显式或隐式）并开始新的同一级别的隐式节段</li>
+<li>如果当前标题级别比之前标题的级别更高，那么闭合前面的节段（显式或隐式）并在<strong>当前所在显式节段内</strong>寻找小于等于自己的最高级别的标题，产生新的同一级别的隐式节段</li>
+</ul>
+<p>可能有点绕…</p>
+<p>示例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的大纲算法<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 当前标题级别比之前的标题级别更低 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>HTML5 的音频和视频<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 当前标题级别与前面标题的级别相同 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>定义节段和标题<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>文档的结构和纲要<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 当前标题级别比之前标题的级别更高 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>隐式节段<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>生成大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_6.png" alt="section_6 outliner"></p>
+<h3 id="Sectioning-roots（虚节根）"><a href="#Sectioning-roots（虚节根）" class="headerlink" title="Sectioning roots（虚节根）"></a>Sectioning roots（虚节根）</h3><pre><code>虚节根是一个HTML元素，这个元素可以拥有自己的大纲，但是元素内部的节段和标题对其祖先的大纲没有贡献。与文档的逻辑分节根&lt;body&gt;元素相比，这些元素经常在页面中引入外部内容：&lt;blockquote&gt;, &lt;details&gt;, &lt;fieldset&gt;, &lt;figure&gt; 和&lt;td&gt;。
+</code></pre><p>示例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的大纲算法<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的文档节段和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML5新增了几个新元素使得开发者可以用标准语义去描述web文档的结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML4 的文档结构<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>HTML4用文档中章节和子章节的概念去描述文档结构。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>文档的结构和纲要<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>MDN<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Mozilla Foundation<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML5 的音频和视频<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>生成大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_7.png" alt="section_7 outliner"></p>
+<p>显然，虽然 <code>&lt;blockquote&gt;</code> 里包含了 <code>&lt;section&gt;</code> 和 <code>&lt;h1&gt;</code> ，但在大纲中并无显示。</p>
+<h3 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h3><p>HTML5 定义了一个新标签 <code>&lt;main&gt;</code>，规定文档的主要内容。<br><code>&lt;main&gt;</code> 元素中的内容对于文档来说应当是唯一的，在一个文档中，不能出现一个以上的 <code>&lt;main&gt;</code> 元素且<code>&lt;main&gt;</code> 元素不能是以下元素的后代：<code>&lt;article&gt;</code>、<code>&lt;aside&gt;</code>、<code>&lt;header&gt;</code>、<code>&lt;footer&gt;</code> 或 <code>&lt;nav&gt;</code>。</p>
+<ol>
+<li><code>&lt;article&gt;</code> 规定独立的自包含内容，一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发，比如论坛帖子、报纸文章、用户评论等。</li>
+<li><code>&lt;aside&gt;</code> 定义其所处内容之外的内容，它的内容应该与附近的内容相关，就像解释栏或广告栏。</li>
+<li><code>&lt;header&gt;</code> 定义了页面的头部，通常会包含 logo 和站点名称以及可能有的水平菜单。尽管名字是header，但是不一定是在页面的开始，比如可以包含在 <code>&lt;article&gt;</code> 的内部。</li>
+<li><code>&lt;footer&gt;</code> 定义了页脚，通常会包含版权信息和法律声明以及一些其他链接。同样，其不一定是在页面的底部出现，也可以包含在 <code>&lt;article&gt;</code> 的内部。</li>
+<li><code>&lt;nav&gt;</code> 定义的节段包含了很多导航links。文档中可以有好几个这样的元素，比如文档内部的链接，就像目录，和链接到其他站点的导航 links。</li>
+</ol>
+<p>注：main 元素并不是一个节段，并不作为文档大纲的一部分。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span>The Lawson Academy:</span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"courses.html"</span>&gt;</span>Courses<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"fees.html"</span>&gt;</span>Fees<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>Graduation<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"> 	  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#ceremony"</span>&gt;</span>Ceremony<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#graduates"</span>&gt;</span>Graduates<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#awards"</span>&gt;</span>Awards<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"ceremony"</span>&gt;</span>Ceremony<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Opening Procession<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Speech by Valedictorian<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Speech by Class President<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Presentation of Diplomas<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Closing Speech by Headmaster<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"graduates"</span>&gt;</span>Graduates<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Eileen Williams<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Andy Maseyk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Blanca Sainz Garcia<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Clara Faulkner<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Gez Lemon<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Eloisa Faulkner<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"awards"</span>&gt;</span>Awards<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Clara Faulkner<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Eloisa Faulkner<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Blanca Sainz Garcia<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span> Copyright 2012 B.lawson<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>生成大纲：</p>
+<p><img src="http://zhengboyang.com/images/section_9.png" alt="section_9 outliner"></p>
+<h2 id="安装-HTML5-Outliner"><a href="#安装-HTML5-Outliner" class="headerlink" title="安装 HTML5 Outliner"></a>安装 HTML5 Outliner</h2><p>对于大纲的可视化，这里推荐两种办法。</p>
+<p>一种是通过<a href="https://gsnedders.html5.org/outliner/" target="_blank" rel="external">在线网址测试</a>，在线网址功能繁多，支持上传 HTML 文件，填写 URL，以及粘贴 HTML 代码。</p>
+<p>另一种方法是安装 Chrome 应用程序扩展，在应用商店搜索 <em>HTML5 Outliner</em>（Generates a navigable page outline with heading and sectioning elements.）并安装就可以了，功能比较单一，暂时只支持在线运行的网页。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>HTML5 的大纲算法以及其引入的新元素显然更有助于 HTML 的语义化，但鉴于由于有些用户代理并没有完全支持 HTML5 ，因此在现实中最好做到标题级别与节段嵌套级别相匹配，保证标题的层级正确，方便节段在多个文档中的重用。</p>
+<p>另外，由于本篇博文是笔者查阅相关文献后独自完成，难免会有所纰漏或考虑欠妥的地方，欢迎大家指正，非常感谢！</p>
+<p><br></p>
+<p>参考文献：</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines" target="_blank" rel="external">Using HTML sections and outlines</a>（感觉有不少描述是错误的/不严谨的…）<br><a href="https://www.w3.org/TR/html5/sections.html#the-aside-element" target="_blank" rel="external">4.3 Sections — HTML5</a><br><a href="https://www.paciellogroup.com/blog/2013/10/html5-document-outline/" target="_blank" rel="external">The HTML5 Document Outline</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag">#HTML</a>
+          
+            <a href="/tags/HTML5/" rel="tag">#HTML5</a>
+          
+            <a href="/tags/FE-Engineer/" rel="tag">#FE Engineer</a>
+          
+            <a href="/tags/大纲算法/" rel="tag">#大纲算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/20/2016-百度之星资格赛-Astar-Round-1/" rel="next" title="2016 百度之星资格赛（Astar Round 1)">
+                <i class="fa fa-chevron-left"></i> 2016 百度之星资格赛（Astar Round 1)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Zheng Boyang" />
+          <p class="site-author-name" itemprop="name">Zheng Boyang</p>
+          <p class="site-description motion-element" itemprop="description">Why So Serious?</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Maxmengt" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/mengt-max" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Zhihu
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML4-的文档结构"><span class="nav-number">1.</span> <span class="nav-text">HTML4 的文档结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5-的大纲算法"><span class="nav-number">2.</span> <span class="nav-text">HTML5 的大纲算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Defining-sections-and-headings（节段与标题）"><span class="nav-number">2.1.</span> <span class="nav-text">Defining sections and headings（节段与标题）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implicit-sectioning（隐式分节）"><span class="nav-number">2.2.</span> <span class="nav-text">Implicit sectioning（隐式分节）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sectioning-roots（虚节根）"><span class="nav-number">2.3.</span> <span class="nav-text">Sectioning roots（虚节根）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义化"><span class="nav-number">2.4.</span> <span class="nav-text">语义化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-HTML5-Outliner"><span class="nav-number">3.</span> <span class="nav-text">安装 HTML5 Outliner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zheng Boyang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'zhengboyangcom';
+      var disqus_identifier = '2016/11/22/浅谈-HTML5-的大纲算法（HTML5-Outliner）/';
+      var disqus_title = '浅谈 HTML5 的大纲算法（HTML5 Outliner）';
+      var disqus_url = 'http://zhengboyang.com/2016/11/22/浅谈-HTML5-的大纲算法（HTML5-Outliner）/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+
+</body>
+</html>
