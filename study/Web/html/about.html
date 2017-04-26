@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../css/index.css">
+		<style type="text/css">
+			#image{ margin:0 auto; text-align: center; width: 100px; height: 100px; animation: myfirst 2s; animation-iteration-count:infinite; }
+			@keyframes myfirst
+			{
+				from { transform:rotate(0deg); }
+				to { transform:rotate(360deg); }
+			}
+			#time { color: #fff; width: 200px; height: 100px; position: absolute; right: 50px; bottom: 20px;}
+			#about-body { 
+				margin-left: 50px;
+				margin-bottom: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			function changehead() {
+				var i = document.form1.heading.selectedIndex;
+				headcolor = document.form1.heading.options[i].value;
+				document.getElementById("head1").style.color = headcolor;
+			}
+			function changebody() {
+				var i = document.form1.body.selectedIndex;
+				doccolor = document.form1.body.options[i].value;
+				document.getElementById("p1").style.color = doccolor;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<img src="../images/bianzu.png">
+			<h2>新世界</h2> 
+			<h2 id="description"></h2>
+			<ul class="nav">
+				<li><a class="login" href="#">登录</a></li>
+				<li><a id="about" class="home" href="about.html">关于我们</a></li>
+				<li><a id="society" href="#">爱心社区</a></li>
+				<li><a id="introduce" href="#">项目介绍</a></li>
+				<li><a id="activity" href="activity.html">最新活动</a></li>
+				<li><a id="index" href="index.html">首页</a></li>
+			</ul>
+		</div>
+		<div id="about-body">
+			<div id="image"><img src="../images/icon3.png"></div>
+			<h3 id="head1">成为我们的志愿者</h3>
+			<hr>
+			<p id="p1">新世界的大家庭需要每一个爱生活的人的加入，如果你够年轻，有梦想，有激情那就不要犹豫，快来加入我们，成为改变所有人生活的人</p>
+			<div>
+				<label>Heading color: </label>
+				<select id="tColor" onchange="changeColor(this.id);">title color
+					<option>red</option>
+					<option>green</option>
+					<option>blue</option>
+				</select><br>
+				<label>Body text color:</label>
+				<select id="bColor" onchange="changeColor(this.id);">body color
+					<option>red</option>
+					<option>green</option>
+					<option>blue</option>
+				</select>
+			</div>
+			<div id="time">
+				Time: <span id="showTime"></span>
+			</div>
+		</div>
+		<div id="contact">
+			<div class="son_contact">
+				<div class="title">
+					<p class="p1">联系我们</p>
+					<p class="p2">为了更好的获取我们最新的产品资讯，您可以留下您的电子邮箱快速订阅我们的产品资讯
+	也可以通过以下任何方式关注我们动态</p>
+				</div>
+			</div>
+			<div class="son_contact_">
+				<div>
+					<form>
+						<input class="text" type="text" name="email" placeholder="  someone@email.com">
+						<input class="submit" type="submit" value="提交">
+					</form>
+					<img src="../images/qq.png">
+					<img src="../images/weibo.png">
+					<img src="../images/xunlei.png">
+					<img src="../images/nasa.png">
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<span>@2016新世界</span>
+			<a href="#header">Back to top</a>
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				showTime();
+				setInterval("showTime()", 1000);
+			}
+
+			function showTime(){
+				var timeText = document.getElementById("showTime");
+				var time = new Date().toLocaleString();
+				timeText.innerHTML = time;
+			}
+
+			function changeColor(id){
+				if( id == "tColor" ) {
+					var textId = "head1";
+				}
+				else {
+					textId = "p1";
+				}
+				var target = document.getElementById(textId);
+				var change = document.getElementById(id);
+				var color = change.value;
+				switch( color ) {
+					case "red":
+					    target.style.color="#ff0000";
+					    break;
+					case "green":
+					    target.style.color="#00ff00";
+					    break;
+					case "blue":
+						target.style.color="#0000ff";
+						break;
+					default:
+					    break;
+				}
+			}
+		</script>
+	</body>
+</html>
