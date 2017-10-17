@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhengboyang.com/"/>
-  <updated>2017-10-17T06:41:26.881Z</updated>
+  <updated>2017-10-17T06:43:58.488Z</updated>
   <id>http://zhengboyang.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhengboyang.com/2017/10/13/logical-fallacies/"/>
     <id>http://zhengboyang.com/2017/10/13/logical-fallacies/</id>
     <published>2017-10-13T08:51:13.905Z</published>
-    <updated>2017-10-17T06:41:26.881Z</updated>
+    <updated>2017-10-17T06:43:58.488Z</updated>
     
     <content type="html">&lt;p&gt;逻辑谬误指的是不依据逻辑的议论，尤其是指论证中不符合逻辑的推论。本文列举了 24 条常见的逻辑谬误，本人并不热衷于与他人辩论，但希望能通过学习常见的逻辑谬误帮助自己加强批判性思考的能力。&lt;/p&gt;
 &lt;p&gt;如果你不想轻易地被被人“洗脑”，建议好好学习下这一块的内容。&lt;/p&gt;
@@ -167,114 +167,6 @@
       <category term="逻辑推理" scheme="http://zhengboyang.com/tags/%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/"/>
     
       <category term="学会思考" scheme="http://zhengboyang.com/tags/%E5%AD%A6%E4%BC%9A%E6%80%9D%E8%80%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MIT-6.824 Distributed Systems</title>
-    <link href="http://zhengboyang.com/2017/05/24/MIT-6.824--Distributed-Systems/"/>
-    <id>http://zhengboyang.com/2017/05/24/MIT-6.824--Distributed-Systems/</id>
-    <published>2017-05-24T06:56:30.796Z</published>
-    <updated>2017-05-26T04:31:24.922Z</updated>
-    
-    <content type="html">&lt;p&gt;6.824 is a core 12-unit graduate subject with lectures, readings, programming labs, an optional project, a mid-term exam, and a final exam. It will present abstractions and implementation techniques for engineering distributed systems. Major topics include fault tolerance, replication, and consistency. Much of the class consists of studying and discussing case studies of distributed systems.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;LEC-1-Introduction&quot;&gt;&lt;a href=&quot;#LEC-1-Introduction&quot; class=&quot;headerlink&quot; title=&quot;LEC 1: Introduction&quot;&gt;&lt;/a&gt;LEC 1: Introduction&lt;/h2&gt;&lt;h3 id=&quot;分布式系统概要&quot;&gt;&lt;a href=&quot;#分布式系统概要&quot; class=&quot;headerlink&quot; title=&quot;分布式系统概要&quot;&gt;&lt;/a&gt;分布式系统概要&lt;/h3&gt;&lt;p&gt;分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。比如说大型数据库，P2P文件共享，MapReduce，DNS等都属于分布式系统（可以说许多关键性的基础架构都是分布式的）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分布式的目的：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;连接物理上相互分离的实体&lt;/li&gt;
-&lt;li&gt;通过隔离（isolation）实现安全性&lt;/li&gt;
-&lt;li&gt;通过复制（replication）实现容错性（tolerate faults，指在故障存在的情况下计算机系统不失效，仍然能够正常工作的特性）&lt;/li&gt;
-&lt;li&gt;通过使用并行的 CPUs/mem/disk/net 垂直扩展（scale up）吞吐量&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;分布式的缺点：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;复杂：许多并发部分&lt;/li&gt;
-&lt;li&gt;必须对局部故障进行处理&lt;/li&gt;
-&lt;li&gt;很难了解潜在的性能&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;课程主题&quot;&gt;&lt;a href=&quot;#课程主题&quot; class=&quot;headerlink&quot; title=&quot;课程主题&quot;&gt;&lt;/a&gt;课程主题&lt;/h3&gt;&lt;p&gt;底层基础架构为应用层隐藏了三大抽象部分的细节：存储（Storage），通信（Communication），计算（Computation）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;课程主要话题：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;实现（implementation）&lt;br&gt;  远程过程调用协议（RPC），线程，并发控制。&lt;/li&gt;
-&lt;li&gt;性能（performance）&lt;br&gt;  目标：可扩展的吞吐量。&lt;br&gt;  扩展的难度随着计算机数量的增加而增大：&lt;ul&gt;
-&lt;li&gt;负载不平衡，存在空闲机器&lt;/li&gt;
-&lt;li&gt;无法并行运行的代码：初始化、互动&lt;/li&gt;
-&lt;li&gt;共享资源的瓶颈，如网络&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;容错（fault tolerance）&lt;br&gt;  Big idea: replicated servers.&lt;br&gt;  如果有一台服务器损坏，客户机可以使用其他服务器正常运行。&lt;br&gt;  目标：&lt;ul&gt;
-&lt;li&gt;可用性 —— 即使有故障发生，app 仍可继续使用其数据&lt;/li&gt;
-&lt;li&gt;持久性 —— 当故障修复后，app 的数据可以恢复&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;一致性（consistency）&lt;br&gt;  一致性和性能是对立的。&lt;br&gt;  难点：&lt;ul&gt;
-&lt;li&gt;“Replica” servers 很难保持一致性&lt;/li&gt;
-&lt;li&gt;客户机在多步更新时可能中途损坏&lt;/li&gt;
-&lt;li&gt;服务器在尴尬的时间损坏，如已执行完程序但还未响应客户机的访问&lt;/li&gt;
-&lt;li&gt;网络可能使可用的服务器看起来像死了一样；”split brain” 风险&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;案例分析：MapReduce&quot;&gt;&lt;a href=&quot;#案例分析：MapReduce&quot; class=&quot;headerlink&quot; title=&quot;案例分析：MapReduce&quot;&gt;&lt;/a&gt;案例分析：MapReduce&lt;/h2&gt;&lt;p&gt;附上谷歌 2004 年发表的经典论文 &lt;a href=&quot;https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MapReduce(2004)&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;MapReduce-概览&quot;&gt;&lt;a href=&quot;#MapReduce-概览&quot; class=&quot;headerlink&quot; title=&quot;MapReduce 概览&quot;&gt;&lt;/a&gt;MapReduce 概览&lt;/h3&gt;&lt;p&gt;MapReduce 既是一种编程模型，也是一种与之关联的用于处理和产生大数据集的实现。用户要特化一个 map 程序去处理 key/value 对，并产生中间 key/value 对的集合，以及一个 reduce 程序去合并有着相同 key 的所有中间 key/value 对。&lt;/p&gt;
-&lt;p&gt;用这种函数式风格写出的程序自动就拥有了在一个大的 PC 机集群上并行执行的能力。运行时系统会负责细节：对输入数据进行划分，在一组机器上调度执行程序，处理机器错误，以及管理所需的机器间通信。这允许不具备任何并行和分布式系统经验的程序员也能轻松地利用一个大型分布式系统的资源。&lt;/p&gt;
-&lt;h3 id=&quot;编程模型&quot;&gt;&lt;a href=&quot;#编程模型&quot; class=&quot;headerlink&quot; title=&quot;编程模型&quot;&gt;&lt;/a&gt;编程模型&lt;/h3&gt;&lt;p&gt;MapReduce 的计算过程就是输入一组 key/value 对，再生成输出一组 key/value 对。MapReduce 库的使用者用两个函数来表示这个过程：map 和 reduce。&lt;/p&gt;
-&lt;p&gt;map 由使用者编写，使用一个输入 key/value 对，生成一组中间 key/value 对。MapReduce库将有着相同中间 key I 的中间 value 都组合在一起，再传给 reduce 函数。&lt;/p&gt;
-&lt;p&gt;reduce 也由使用者编写，它接受一个中间 key I 和一组与 I 对应的 value。它将这些 value 合并为一个可能更小的 value 集合。通常每个 reduce 调用只产生 0 或 1 个输出 value。中间 value 是通过一个迭代器提供给 reduce 函数的。这允许我们操作那些因为大到找不到连续存放的内存而使用链表的 value 集合。&lt;/p&gt;
-&lt;h3 id=&quot;执行过程概述&quot;&gt;&lt;a href=&quot;#执行过程概述&quot; class=&quot;headerlink&quot; title=&quot;执行过程概述&quot;&gt;&lt;/a&gt;执行过程概述&lt;/h3&gt;&lt;p&gt;通过自动将输入数据划分为 M 块，map 调用分布在多台机器上进行。输入划分可以在不同的机器上并行执行。reduce 调用是通过一个划分函数（例如 hash(key) mod R)将中间 key 空间划分为 R 块来分布运行。划分的块数 R 和划分函数都由用户指定。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://zhengboyang.com/images/MapReduceExecution.jpg&quot; alt=&quot;Figure 1: Execution overview&quot;&gt;&lt;/p&gt;
-&lt;p&gt;图 1 展示了我们的实现中MapReduce操作的整体流程。当用户程序调用 MapReduce 函数时，会发生下面一系列动作（图 1 中的标号与下面列表顺序相同）：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;用户程序中的 MapReduce 库首先将输入文件划分为 M 块，每块的大小从 16MB 到 64MB（用户可通过一个可选参数控制此大小）。然后 MapReduce 库会在一个集群的若干台机器上启动程序的多个副本。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;程序的各个副本中有一个是特殊的 —— 主节点，其它的则是工作节点。主节点将 M 个 map 任务和 R 个 reduce 任务分配给空闲的工作节点，每个节点一项任务。Ps: &lt;strong&gt;主节点维持多种数据结构。它会存储每个 map 和 reduce 任务的状态（空闲、处理中、完成），和每台工作机器的 ID（对应非空闲的任务）。&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;被分配 map 任务的工作节点读取对应的输入区块内容。它从输入数据中解析出 key/value 对，然后将每个对传递给用户定义的 map 函数。由 map 函数产生的中间 key/value 对都缓存在内存中。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;缓存的数据对会被周期性的由划分函数分成 R 块，并写入本地磁盘中。这些缓存对在本地磁盘中的位置会被传回给主节点，主节点负责将这些位置再传给 reduce 工作节点。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当一个 reduce 工作节点收到来自主节点的位置通知后，它使用 RPC 调用去读取 map 工作节点的本地磁盘中的缓存数据。当 reduce 工作节点读取完了所有的中间数据，它会将这些数据按中间 key 排序，这样相同 key 的数据就被排列在一起了。同一个 reduce 任务经常会分到有着不同 key 的数据，因此这个排序很有必要。如果中间数据数量过多，不能全部载入内存，则使用外部排序。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;reduce 工作节点遍历已排序的中间数据，并将遇到的每个不同的中间 key 和与它关联的一组中间 value 传递给用户的 reduce 函数。reduce 函数的输出会写到由 reduce 划分过程划分出来的最终输出文件的末尾。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当所有的 map 和 reduce 任务都完成后，主节点唤醒用户程序。此时，用户程序中的 MapReduce 调用返回到用户代码中。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;成功完成后，MapReduce 执行的输出都在 R 个输出文件中（每个 reduce 任务产生一个，文件名由用户指定）。通常用户不需要合并这 R 个输出文件 —— 他们经常会把这些文件当作另一个 MapReduce 调用的输入，或是用于另一个可以处理分成多个文件输入的分布式应用。&lt;/p&gt;
-&lt;h3 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;容错性（Fault tolerance）&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;工作节点故障&lt;/p&gt;
-&lt;p&gt;  主节点周期性地 ping 每个工作节点。如果工作节点在一定时间内没有回应，主节点就将它标记为已失效。这个工作节点完成的任何 map 任务都被重置为初始空闲状态，并可被调度到其它工作节点上。同样地，故障的工作节点上正在处理的任何 map 或 reduce 任务也被重置为空闲状态，并允许被调度。&lt;/p&gt;
-&lt;p&gt;  失败节点上已完成的 map 任务需要重执行的原因是它们的输出存储在故障机器的本地磁盘上，因此无法访问到了。已完成的 reduce 任务不需要重执行，因为它们的输出存储在了一个全球文件系统上（GFS）。&lt;/p&gt;
-&lt;p&gt;  当一个 map 任务先被 A 节点执行过，随后又被 B 节点重执行（A 节点已失效），所有执行 reduce 任务的工作节点都能收到重执行的通知（笔者注：这里为什么是所有？不能只通知对应的 reduce 节点吗？），其中没有读取完 A 节点数据的 reduce 任务将会从 B 节点读取数据。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;主节点故障&lt;/p&gt;
-&lt;p&gt;  一种简单的方法是令主节点定期将上面描述的数据结构保存为恢复点。如果主节点任务失败，就可以从上一个恢复点状态启动一个新的程序副本。但是给定的条件是只有一个主节点，它也不太可能失败；因此我们当前的实现会在主节点失败时中止 MapReduce 计算。客户可以检查到这一情况，并在他们需要时重启 MapReduce 操作。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其他错误的处理机制&lt;/p&gt;
-&lt;p&gt;  当一个 map 任务完成时，工作节点会给主节点发送一条消息，其中包含了 R 个临时文件的名字。如果主节点收到了一个来自已完成的 map 任务的完成消息，它就会忽略掉。否则，主节点会将 R 个文件的名字记录在相应的数据结构中。&lt;/p&gt;
-&lt;p&gt;  当一个 reduce 任务完成时，工作节点会执行原子性的更名操作，将临时输出文件更名为最终输出文件。如果有相同的 reduce 任务在多个机器上执行，就会有多个更名调用应用在相同的最终输出文件上。对此，我们依赖于由底层文件系统提供的原子更名操作，才能保证最终的文件系统中只包含由其中一个 reduce 执行产生的数据。&lt;/p&gt;
-&lt;p&gt;  当 MapReduce 操作接近完成时，主节点会将仍在处理中的剩余任务调度给其它机器作备用执行。原本的执行和备用执行中的任一个完成时都会将对应任务标记为已完成。这样做是为了减轻存在 “straggler” 导致操作用时延长的影响。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;扩展性&lt;/strong&gt;&lt;br&gt;N 台计算机可以提供 N 倍的吞吐量，假设 M 和 R 都大于等于 N (比如说很多输入文件和输出 keys)，由于 Maps()s 之间不会相互影响，所以可以并行运行。Reduce()s 同理。这就意味着你可以通过购买更多计算机来获得更大的吞吐量。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;局部性&lt;/strong&gt;&lt;br&gt;在我们的计算环境中，网络带宽是一种比较稀缺的资源。我们利用下面的事实来节省带宽：输入数据（由 GFS 管理）就存储在组成集群的机器的本地磁盘上。GFS 将每个文件分成 64MB 大小的区块，每块复制若干份（通常为 3 份）存储到不同的机器上。MapReduce 主节点会把输入文件的位置信息考虑进去，并尝试将 map 任务分配到保存有相应输入数据的机器上。如果失败的话，它会试图将 map 任务调度到临近这些数据的机器上（例如与保存输入数据的机器处于同一网关的工作节点）。当在一个集群的相当一部分节点上运行 MapReduce 操作时，大多数输入数据都是本地读取，并不消耗网络带宽。&lt;/p&gt;
-&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;首先，MapReduce 模型即使是对于没有并行和分布式系统经验的程序员也是很易于使用的，因为它隐藏了并行化、容错机制、局部性优化、以及负载平衡的细节。&lt;/p&gt;
-&lt;p&gt;其次，很多种类的问题都很容易表示成 MapReduce 计算。例如，MapReduce 被用于为 Google 的网络搜索服务的数据产生、排序、数据挖掘、机器学习、以及许多其它系统。&lt;/p&gt;
-&lt;p&gt;另外，该模型的可扩展性也非常强。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;6.824 is a core 12-unit graduate subject with lectures, readings, programming labs, an optional project, a mid-term exam, and a final exam. It will present abstractions and implementation techniques for engineering distributed systems. Major topics include fault tolerance, replication, and consistency. Much of the class consists of studying and discussing case studies of distributed systems.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="分布式系统" scheme="http://zhengboyang.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="分布式" scheme="http://zhengboyang.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -701,9 +593,9 @@ search hello
       <category term="ACM" scheme="http://zhengboyang.com/categories/ACM/"/>
     
     
-      <category term="贪心" scheme="http://zhengboyang.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="字典树" scheme="http://zhengboyang.com/tags/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    
+      <category term="贪心" scheme="http://zhengboyang.com/tags/%E8%B4%AA%E5%BF%83/"/>
     
       <category term="树" scheme="http://zhengboyang.com/tags/%E6%A0%91/"/>
     
@@ -1209,6 +1101,43 @@ add(i + 1, -x);
       <category term="数据结构" scheme="http://zhengboyang.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="树状数组" scheme="http://zhengboyang.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>URAL 2034 Caravans（最短路 + 二分）</title>
+    <link href="http://zhengboyang.com/2016/03/16/ural-2034/"/>
+    <id>http://zhengboyang.com/2016/03/16/ural-2034/</id>
+    <published>2016-03-16T04:15:10.512Z</published>
+    <updated>2016-03-16T04:17:22.971Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://acm.timus.ru/problem.aspx?space=1&amp;amp;num=2034&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;题目&lt;/a&gt;大意&lt;/h3&gt;&lt;p&gt;给出 $n$ 个点，$m$ 条边的无向带权图（权值都为1），镖车将从起点 $s$ 出发到达终点 $f$，保证走最短路径。强盗在点 $r$ 处，他想通过预先埋伏的方式拦截镖车（甚至可以在 $s$ 或者 $f$ 埋伏）。并且强盗希望在离 $r$ 最近的点埋伏，问最坏情况下需要走的最远距离。&lt;br&gt;$( 3 \leq n \leq 10^5, 2 \leq m \leq 10^5)$&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a&gt;解题思路&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;最短路 + 二分&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;题意有点难理解，特别是这部分：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Among all such settlements the robbers will choose the one closest to settlement  r.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;They don’t know the caravan’s route yet, but they want to know the maximum distance they will have to go in the worst case to the settlement where they will rob the caravan.&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;一开始理解为必须保证拦截，所以思路就是求 $s$ 到 $f$ 最短路径图的割点中离 $r$ 距离最短的点。可是又无法解释 “maximum distance”。后来才发现应该是求 $r$ 到最短路（可能不止一条）最近距离的最大值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最大化最小值。&lt;/strong&gt;很容易联想到二分。先跑出 $r$ 到各个点的最短距离 $d_i$，然后直接二分答案（距离），每次将小于距离的 $d_i$ 对应的点删除，然后跑 $s$ 到 $f$ 的最短路，看是否满足到 $f$ 的距离最短就可以了。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;br&gt;（注意二分的写法：距离越小越满足，越大越不满足，求最大）&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;100&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;101&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstdlib&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cmath&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;queue&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;map&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;set&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; ll;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; MAXN = &lt;span class=&quot;number&quot;&gt;1e5&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; MAXM = &lt;span class=&quot;number&quot;&gt;1e5&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; edge &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; to, next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    edge( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; to = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; next = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; ) : to(to), next(next) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; G[MAXM &amp;lt;&amp;lt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n, m;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; tot, head[MAXN];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; d[MAXN], vis[MAXN], D[MAXN];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; s, f, r;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ans;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;add_edge&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; u, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; v)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    G[tot] = edge(v, head[u]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    head[u] = tot++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    G[tot] = edge(u, head[v]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    head[v] = tot++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tot = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;memset&lt;/span&gt;(head, &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(head));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;memset&lt;/span&gt;(vis, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(vis));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ss)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;memset&lt;/span&gt;(d, &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(d));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;( vis[s] ) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;queue&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; que;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    que.push(ss);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    d[ss] = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vis[ss] = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;( !que.empty() )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; u = que.front(); que.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = head[u]; ~i; i = G[i].next )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; v = G[i].to;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;( !vis[v] &amp;amp;&amp;amp; d[v] == &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt; )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                d[v] = d[u] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                vis[v] = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                que.push(v);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;( ~&lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;, &amp;amp;n, &amp;amp;m) )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        init();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; u, v;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; m; ++ i )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;, &amp;amp;u, &amp;amp;v);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            add_edge(u, v);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d %d&quot;&lt;/span&gt;, &amp;amp;s, &amp;amp;f, &amp;amp;r);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        bfs(s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ans = d[f];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;memset&lt;/span&gt;(vis, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(vis));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        bfs(r);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= n; ++ i ) D[i] = d[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; L = &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;, R = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= n; ++ i )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            R = max(R, D[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;( R - L &amp;gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; m = (L + R) &amp;gt;&amp;gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;memset&lt;/span&gt;(vis, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(vis));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= n; ++ i )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;( D[i] &amp;lt;= m ) vis[i] = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            bfs(s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;( d[f] == &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt; || d[f] &amp;gt; ans ) R = m;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; L = m;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d\n&quot;&lt;/span&gt;, R);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&quot;另一种方法&quot;&gt;&lt;a href=&quot;#另一种方法&quot; class=&quot;headerlink&quot; title=&quot;另一种方法&quot;&gt;&lt;/a&gt;另一种方法&lt;/h3&gt;&lt;p&gt;从起点 $s$ 点出发，顺着到 $f$ 点的最短路径图，更新各路径到 $r$ 的最短距离，和各点所属路径中当前与 $r$ 的最大距离，一直跑到终点 $f$处。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://acm.timus.ru/problem.aspx?space=1&amp;amp;num=2034&quot;&gt;题目&lt;/a&gt;大意&lt;/h3&gt;&lt;p&gt;给出 $n$ 个点，$m$ 条边的无向带权图（权值都为1），镖车将从起点 $s$ 出发到达终点 $f$，保证走最短路径。强盗在点 $r$ 处，他想通过预先埋伏的方式拦截镖车（甚至可以在 $s$ 或者 $f$ 埋伏）。并且强盗希望在离 $r$ 最近的点埋伏，问最坏情况下需要走的最远距离。&lt;br&gt;$( 3 \leq n \leq 10^5, 2 \leq m \leq 10^5)$&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://zhengboyang.com/categories/ACM/"/>
+    
+    
+      <category term="二分" scheme="http://zhengboyang.com/tags/%E4%BA%8C%E5%88%86/"/>
+    
+      <category term="图论" scheme="http://zhengboyang.com/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+      <category term="最短路" scheme="http://zhengboyang.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
     
   </entry>
   
